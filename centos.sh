@@ -75,6 +75,22 @@ vi $PGDATA/postgresql.conf
 #listen_addresses = 'localhost' 
 #listen_addresses = '*' 
 
+listen_addresses = '*'
+shared_buffers = 512MB
+work_mem = 64MB
+maintenance_work_mem = 128MB
+# 보통 on 처리
+synchronous_commit = off
+# 트랜젝션 용량 설정값
+max_wal_size = 2GB
+min_wal_size = 2GB
+# 디스크 캐시 크기
+effective_cache_size = 1GB
+logging_collector = on
+# millisecond
+log_min_duration_statement = 200
+track_io_timing = on
+
 
 vi $PGDATA/pg_hba.conf
 
@@ -117,6 +133,27 @@ find /postgres/11/bin -type f -exec sh -c "{} --help | head -1" \;
 
 # 지속 보기
 watch ps x
+
+
+true
+echo $?
+# 0
+
+false
+echo $?
+# 1
+
+free -m
+
+#
+dd if=/dev/zero of=1GB bs=256k count=4096
+
+time cat 1GB > /dev/null
+
+
+halt
+poweroff
+shutdown -h
 
 
 

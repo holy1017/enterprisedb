@@ -26,6 +26,7 @@ $ cd 13878 && ls
 $ cd ..
 $ createdb test && ls
 $ pgbench --help
+$ pgbench test
 $ pgbench -i test
 $ pgbench -j 10 -c 10 -T 600 test
 $ Ctrl-Z
