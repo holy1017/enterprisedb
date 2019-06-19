@@ -70,6 +70,7 @@ pg_ctl stop -D data
 
 netstat -na | grep 5432
 
+# http://postgresql.kr/docs/11/runtime-config-connection.html
 vi $PGDATA/postgresql.conf
 
 #listen_addresses = 'localhost' 
@@ -156,7 +157,8 @@ poweroff
 shutdown -h
 
 
-
+postgresql.org
+postgresql.kr
 
 
 
