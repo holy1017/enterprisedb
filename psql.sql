@@ -100,3 +100,31 @@ vacuum analyze  t;
 select * from pg_stats where  tablename ='t' \gx
 
 
+select ctid,xmin,xmax,* from t limit 100;
+
+select * from pg_class where  relname ='t' \gx
+
+-- 테이블 나이
+select age(relfrozenxid) from pg_class where  relname ='t' \gx
+
+
+show autovacuum_freeze_max_age;
+show vacuum_freeze_table_age;
+show vacuum_freeze_min_age;
+
+
+\d pg_database;
+select * from pg_database;
+select age(datfrozenxid) from pg_database;
+
+vacuum freeze;
+
+
+
+
+
+
+
+
+
+
