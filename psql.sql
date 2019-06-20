@@ -115,6 +115,7 @@ show vacuum_freeze_min_age;
 
 \d pg_database;
 select * from pg_database;
+select * from pg_stat_database \gx
 select age(datfrozenxid) from pg_database;
 
 vacuum freeze;
@@ -122,9 +123,23 @@ vacuum freeze;
 
 
 
+-- Table: test.test_hash
 
+-- DROP TABLE test.test_hash;
 
+-- 파티션 마스터 테이블 생성
+CREATE TABLE test.test_hash
+(
+    i integer NOT NULL ,
+    t timestamp with time zone,
+    CONSTRAINT test_hash_pkey PRIMARY KEY (i)
+) partition by hash (i);
 
+--ALTER TABLE test.test_hash    OWNER to postgres;
 
+CREATE TABLE test.test_hash_p1 PARTITION OF test.test_hash    FOR VALUES WITH (MODULUS 4, REMAINDER 0);
+CREATE TABLE test.test_hash_p2 PARTITION OF test.test_hash    FOR VALUES WITH (MODULUS 4, REMAINDER 1);
+CREATE TABLE test.test_hash_p3 PARTITION OF test.test_hash    FOR VALUES WITH (MODULUS 4, REMAINDER 2);
+CREATE TABLE test.test_hash_p4 PARTITION OF test.test_hash    FOR VALUES WITH (MODULUS 4, REMAINDER 3);
 
-
+insert into test.test_hash select generate_series(1,100),current_timestamp;
