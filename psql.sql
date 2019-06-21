@@ -5,6 +5,8 @@ select version () \gx
 show max_wal_size;
 show min_wal_size;
 
+-- 암호 변경
+alter user postgres with password 'postgres';
 
 create table t (a int);
 insert into t values (1);
@@ -143,3 +145,37 @@ CREATE TABLE test.test_hash_p3 PARTITION OF test.test_hash    FOR VALUES WITH (M
 CREATE TABLE test.test_hash_p4 PARTITION OF test.test_hash    FOR VALUES WITH (MODULUS 4, REMAINDER 3);
 
 insert into test.test_hash select generate_series(1,100),current_timestamp;
+
+-- 데이터 베이스 목록
+\l
+
+-- 다른 데이터 베이스 접속
+\c
+
+-- 데이터베이스 생성
+CREATE DATABASE test;
+
+-- Look 의 원인 PID 찿기
+\df pg_blocking_pids
+select pg_blocking_pids(pid);
+
+-- 강제 종료
+\df pg_terminate_backend
+select pg_terminate_backend(pid);
+
+-- 쿼리 실행 목록
+ select * from pg_catalog.pg_stat_activity
+
+
+
+
+
+
+
+
+
+
+
+
+
+\c 

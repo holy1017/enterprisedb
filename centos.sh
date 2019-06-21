@@ -66,10 +66,11 @@ postgres=# \l
 (3개 행)
 
 # 정지
-pg_ctl stop -D data
+
 
 netstat -na | grep 5432
 
+# 접속 IP 설정
 # http://postgresql.kr/docs/11/runtime-config-connection.html
 vi $PGDATA/postgresql.conf
 
@@ -92,7 +93,7 @@ logging_collector = on
 log_min_duration_statement = 200
 track_io_timing = on
 
-
+# 접속 정보 설정
 vi $PGDATA/pg_hba.conf
 
 host    all             all             192.168.204.128/32               md5
@@ -115,9 +116,11 @@ postgres=# ALTER USER postgres PASSWORD 'postgres';
 
 # postgresql-korea/hands-on
 
-pg_ctl start
+pg_ctl start -D data
 
 pg_ctl reload
+
+pg_ctl stop -D data
 
 LANG=C date
 LANG=JA_JP date
@@ -159,6 +162,31 @@ shutdown -h
 
 postgresql.org
 postgresql.kr
+
+
+
+cd /home/postgres/data/log
+find / -type f -name postgresql*.log
+
+
+# 테스트용 데이터 베이스 생성
+pgbench -i test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
