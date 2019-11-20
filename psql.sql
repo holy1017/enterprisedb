@@ -168,7 +168,8 @@ select pg_terminate_backend(pid);
 
 
 
-
+-- 세션에만 적용되는 날자 출력형식 변경
+Set datestyle to ISO;
 
 
 
