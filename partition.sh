@@ -26,4 +26,16 @@ and    a.table_name=b.table_name
 and    a.high_value=b.high_value
 and    a.partition_position=b.partition_position
 order by 1,2
-" grep ￦| | sed 
+" grep ￦| | sed -n '2,$ s/[-:'\'' ]//gp' | awk -F\| "
+{
+ tm1=substr(\$3,1,4)
+ tm2=substr(\$3,5,2)
+ tm3=substr(\$3,7,2)
+tm4=substr(\$3,9,2) 
+tm5=substr(\$3,11,2)
+tm6=substr(\$3,13,2)
+tm=(mktime(sprintf(\"%d %d %d %d %d %d\",tm1,tm2,tm3,tm4,tm5,tm6))-systime())/60/60/24
+print \$1\"\t\"tm > \"test.dat\"
+print tm > \"test-\" \$1 \".cnt\"
+}
+"
