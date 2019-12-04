@@ -1,0 +1,26 @@
+create table test1
+(
+ seq bigint,
+ constraint pk_test1 primary key (seq)
+)
+partition by rang(seq)
+(
+ partition pt_10 value less than (10),
+ partition pt_30 value less than (30)
+);
+
+create table test2
+(
+ seq bigint references test1(seq) on delete cascade,
+ constraint pk_test1 primary key (seq)
+)
+partition by rang(seq)
+(
+ partition pt_20 value less than (20)
+);
+
+insert into test2(seq)
+value(5)
+-- 
+insert into test1(seq)
+value(5)
