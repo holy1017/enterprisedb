@@ -1,3 +1,9 @@
+튜플만 출력
+psql -d 데이터베이스 -U 유저 -p 포트 -h 아이피 -tc "
+select '테스트'
+"
+
+
 select version ();
 select version () \gx
 
