@@ -85,6 +85,9 @@ CREATE SCHEMA holy AUTHORIZATION holy;
 GRANT group_role TO role1, ... ;
 REVOKE group_role FROM role1, ... ;
 
+GRANT ALL 
+    ON ALL TABLES IN SCHEMA public
+    TO  PUBLIC ;
                  
 \! ls -l
 \! pwd
