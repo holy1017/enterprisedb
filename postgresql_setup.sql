@@ -66,6 +66,7 @@ CREATE USER holy PASSWORD '';
 -- # createuser holy
 -- # dropuser name
                  
+-- createdb dvdrental
 select * from pg_database;
 CREATE DATABASE holy OWNER holy;
 -- 목록
