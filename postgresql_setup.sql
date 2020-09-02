@@ -84,7 +84,10 @@ CREATE SCHEMA holy AUTHORIZATION holy;
 GRANT group_role TO role1, ... ;
 REVOKE group_role FROM role1, ... ;
 
-
+                 
+\! ls -l
+\! pwd
+\! find / -name *make* 2> /dev/null
 
 
 
