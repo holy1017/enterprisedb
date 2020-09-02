@@ -21,6 +21,33 @@ systemctl start postgresql-12
 
 # 여기까지 아주 잘됨
 find / -name '*psql*' -o -name '*postgresql*'
+find / -name '*postgresql.conf*' -o -name *pg_hba.conf* 2> /dev/null
+
+
+vi /var/lib/pgsql/12/data/postgresql.conf
+# /listen_addresses
+# #listen_addresses = 'localhost' 
+# listen_addresses = '*' 
+/usr/pgsql-12/bin/postgres restart
+
+vi /var/lib/pgsql/12/data/pg_hba.conf
+# /IPv4 local connections
+# host    all             all             127.0.0.1/32            ident
+# host    all             all             0.0.0.0/0            md5
+
+
+systemctl restart postgresql-12
+systemctl status postgresql-12
+
+netstat -ntlp
+
+# 방화벽 설정
+systemctl status firewalld
+firewall-cmd --list-all-zone
+firewall-cmd --get-default-zone
+firewall-cmd --zone=public --list-all
+firewall-cmd --zone=public --add-port=5432/tcp
+# firewall-cmd --zone=public --remove-port=22581/tcp
 
 # 사용자 계정
 sudo -u postgres -i
