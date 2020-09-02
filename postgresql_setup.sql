@@ -79,12 +79,11 @@ CREATE SCHEMA holy;
 drop SCHEMA holy;
 CREATE SCHEMA holy AUTHORIZATION holy;
 
-\c holy -user holy
+-- \c holy -user holy
+-- GRANT group_role TO role1, ... ;
+-- REVOKE group_role FROM role1, ... ;
 
-
-GRANT group_role TO role1, ... ;
-REVOKE group_role FROM role1, ... ;
-
+\c holy
 GRANT ALL 
     ON ALL TABLES IN SCHEMA public
     TO  PUBLIC ;
