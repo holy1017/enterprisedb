@@ -40,7 +40,14 @@ ls -l /var/lib/pgsql/12
 # /usr/pgsql-12/bin/dropdb mydb
 
 
+su -
+mkdir /data
+chmod go+w /data
+wget https://sp.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip -O /data/dvdrental.zip
+unzip /data/dvdrental.zip -d /data
 
+sudo -u postgres -i
+pg_restore -U postgres -d dvdrental /data/dvdrental.tar
 
 
 
