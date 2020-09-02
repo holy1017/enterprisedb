@@ -63,7 +63,9 @@ SELECT 2 + 2;
 
 select * from pg_user;
 CREATE USER holy PASSWORD '';
-
+-- # createuser holy
+-- # dropuser name
+                 
 select * from pg_database;
 CREATE DATABASE holy OWNER holy;
 -- 목록
@@ -76,10 +78,11 @@ CREATE SCHEMA holy;
 drop SCHEMA holy;
 CREATE SCHEMA holy AUTHORIZATION holy;
 
+\c holy -user holy
 
 
-
-
+GRANT group_role TO role1, ... ;
+REVOKE group_role FROM role1, ... ;
 
 
 
