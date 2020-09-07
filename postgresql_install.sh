@@ -49,6 +49,12 @@ firewall-cmd --zone=public --list-all
 firewall-cmd --zone=public --add-port=5432/tcp
 # firewall-cmd --zone=public --remove-port=22581/tcp
 
+sudo firewall-cmd --permanent --add-port=5432/tcp
+#출처: https://uxgjs.tistory.com/162 [UX 공작소]
+
+sudo systemctl restart firewalld
+
+
 # 사용자 계정
 sudo -u postgres -i
 ls -l /home
